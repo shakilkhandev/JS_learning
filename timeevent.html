@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JS and HTML Events</h1>
+<h2>The onclick Attribute</h2>
+
+<p>Click the button to display the date.</p>
+<button id="b1" onclick="displayDate()">I am clock,click me</button>
+
+<script>
+function displayDate() {
+  document.getElementById("time").innerHTML = Date();
+  document.getElementById("b1").innerHTML = "Clicked";
+}
+</script>
+
+<p id="time">____________©️shakil_khan</p>
+
+<style>
+    body{
+        background-color: darkblue;
+    }
+    h1{
+      color: rgb(229, 155, 28);
+    }
+    h2{
+        color: rgb(12, 193, 51);
+    }
+    button{
+        border: solid turquoise;
+        background: black;
+        color: red;
+        height: 30px;
+    }
+    p{
+        color: cornsilk;
+    }
+</style>
+
+
+</body>
+</html> 
