@@ -2,13 +2,10 @@
 
 This repository contains  JavaScript files which i practiced as by my learning journey begin.......
 
-## How to Use
 
-1. Clone this repository to your local machine.
-2. Open the `filename(as you want).js` file to view the implementation of the code.
-3. You can modify the function or use it in your own projects as needed.
+## JavaScript String indexOf() :
+The indexOf() method returns the index (position) of the first occurrence of a string in a string, or it returns -1 if the string is not found:
 
-## Usage Example
+## The match() method:
+returns an array containing the results of matching a string against a string 
 
-```javascript
-printName("Shakil", "Khan");
