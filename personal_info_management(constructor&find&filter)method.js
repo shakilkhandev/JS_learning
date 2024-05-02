@@ -40,14 +40,26 @@ function showbyname(name){
     
     name = prompt('Input Name :');
     
-    let check = info.find(function(personfind){
-        return personfind.fullname === name ;
+    let check = info.filter(function(personfilter){
+        return personfilter.fullname === name ;
     });
-    if(check){
-        console.log('Founded...');
-        console.log('Name : ',check.fullname, 'Age : ',check.age);
+    
+    if(check.length>0){
+        
+        check.forEach(function(all){
+            console.log("Name :"+all.fullname,"Age :"+all.age);
+        });
+        
         menu();
+        
     }
+    
+    // This was used with find();
+    //  if(check.length==1){
+    //     console.log('Founded...');
+    //     console.log('Name : ',check.fullname, 'Age : ',check.age);
+    //     menu();
+    // }
     
     else {
         console.log('Not found.');
