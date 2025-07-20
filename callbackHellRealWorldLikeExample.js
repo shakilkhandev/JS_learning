@@ -119,59 +119,134 @@ getUser(1, (user) => {
 // by using     Promises
 
 
-const getUser = (userID) => {
-    return new Promise((res, rej) => setTimeout(() => {
+// const getUser = (userID) => {
+//     return new Promise((res, rej) => setTimeout(() => {
 
 
-        let user = users.find((user) => user.userID === userID);
-        if (user) {
+//         let user = users.find((user) => user.userID === userID);
+//         if (user) {
 
-            console.log("User found :", user.userName);
+//             console.log("User found :", user.userName);
 
-            res(user);
-        }
-        rej("User not Found");
+//             res(user);
+//         }
+//         rej("User not Found");
 
-    }, 1000)
-    )
-};
+//     }, 1000)
+//     )
+// };
 
-const getPost = (user) => {
+// const getPost = (user) => {
 
 
 
-    let posts = user.posts;
-    if (posts) {
+//     let posts = user.posts;
+//     if (posts) {
+//         setTimeout(() => {
+
+//             console.log("User posts fetching ....  ");
+//             posts.map((post, index) => {
+//                 console.log("Post :", index, " \n ");
+//                 console.log(post.caption);
+//                 let comments = post.comments;
+
+//                 if (comments.length > 0) {
+//                     comments.map((commnent) => console.log("User.ID : ", commnent.userID, "\n comment : ", commnent.comment));
+
+//                     console.log(` \n  \n `)
+//                 }
+//             }
+//             )
+
+//         }, 1500);
+
+//     }
+
+
+// };
+
+
+
+
+
+// getUser(1)
+//     .then((user) => getPost(user))
+//     .catch(err => console.log("error:", err))
+
+
+
+// ***********************by using  promise.all *******************
+//  **********to resolve all promise at once **************
+
+
+function getUser(userId) {
+    return new Promise(
+        (res, rej) => {
+            setTimeout(() => {
+                let user = users.find((user) => user.userID === userId)
+                if (user) {
+                    console.log(`User found : ${user.userName}`);
+                    return res(user);
+                } else {
+                    rej("User not found");
+                }
+            }, 2000)
+
+        });
+}
+
+function getPost(user) {
+    return new Promise((res, rej) => {
+
         setTimeout(() => {
 
-            console.log("User posts fetching ....  ");
-            posts.map((post, index) => {
-                console.log("Post :", index, " \n ");
-                console.log(post.caption);
-                let comments = post.comments;
+            let posts = user.posts;
 
-                if (comments.length > 0) {
-                    comments.map((commnent) => console.log("User.ID : ", commnent.userID, "\n comment : ", commnent.comment));
-
-                    console.log(` \n  \n `)
-                }
+            if (posts.length > 0) {
+                console.log("Start Fetching Posts");
+                res(posts)
+            } else {
+                rej("No posts found");
             }
-            )
-
-        }, 1500);
-
-    }
 
 
-};
+        })
+
+    }, 1000)
+
+
+}
 
 
 
+function getComments(post) {
+    return new Promise ((res, rej )=>{
+      
+            let comments = post.comments;
+            if (comments.length >  0 ){
+            comments.map((comments)=>console.log("UserID : " ,comments.userID, "\n ","comment : ", comments.comment));
+            res ("\n No more comments");
+
+
+            }else{
+                rej("No comments found")
+            }
+    })
+}
 
 
 getUser(1)
-    .then((user) => getPost(user))
-    .catch(err => console.log("error:", err))
+         .then( (user) => getPost(user))
+         .then( (posts) =>{
+            return Promise.all(
+                posts.map((post,index)=>{
+                    console.log("post : ",index+1);
+                    console.log(post.caption);
+                    getComments(post);
 
+                    console.log("\n   \n ")
 
+                }))
+            })
+            .catch((err) => console.log("Error : " , err));
 
