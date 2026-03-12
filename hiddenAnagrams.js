@@ -1,3 +1,13 @@
+// An anagram is when two words or phrases contain the same letters in the same frequency, but arranged differently.
+
+// Example:
+
+// "listen" and "silent" → both have the letters l, i, s, t, e, n.
+
+// "race" and "care" → both have r, a, c, e.
+
+
+
 function checkAnagram(str1, str2) {
     let newStr ="";
     
@@ -12,7 +22,7 @@ function checkAnagram(str1, str2) {
              for (let j=0 ; j < str2.length ; j++ ){
                     if(str1[i]==str2[j]){
                             newStr+=str2[j];
-                            break ; //
+                            break ; // if match then break the loop and move to next character of str1 and check with all characters of str2
                         }
                         
                 }
