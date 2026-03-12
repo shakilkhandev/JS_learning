@@ -1,4 +1,4 @@
-# Javascript learning process 
+# Javascript learning 
 
 This repository contains  JavaScript files, which I practiced as my learning journey begins.......
 

@@ -1,0 +1,18 @@
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var toHex = function(num) {
+    if (num === 0) return "0";
+    
+    let hex = "";
+    const hexChars = "0123456789abcdef";
+    
+    // Use unsigned right shift to handle negative numbers correctly
+    while (num !== 0) {
+        hex = hexChars[num & 15] + hex;
+        num >>>= 4;
+    }
+    
+    return hex;
+};
